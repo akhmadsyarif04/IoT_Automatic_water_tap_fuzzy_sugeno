@@ -32,8 +32,6 @@ float temp, minsuhuKelem;
 
 void setup() {
   lcd.begin(); // initializing the lcd 16x2
-//  lcd.setBacklightPin(3, POSITIVE); // enable or turn on the backlight
-//  lcd.setBacklight(HIGHT);
 
 //  lcd.init();
   // Print a message to the LCD.
@@ -76,21 +74,17 @@ void setup() {
 }
  
 void loop() {
-//  sensorKelembaban = dht.readHumidity();
-//  sensorSuhu = dht.readTemperature();
+  sensorKelembaban = dht.readHumidity();
+  sensorSuhu = dht.readTemperature();
 
   //sensor ldr
   int nilai = analogRead(A0);   // Baca nilai sensor
   float Vout = nilai*0.0048828125;
-//  sensorCahaya = 500/(10*((5-Vout)/Vout)); // ini yang benar conversi lux
+  sensorCahaya = 500/(10*((5-Vout)/Vout)); // ini yang benar conversi lux
 
-//  float lux2=(2500/Vout-500)/10;
-//  Serial.println(sensorCahaya);
-//  Serial.println(lux2);
-
- sensorSuhu = 32.00;
- sensorKelembaban = 62.00 ;
- sensorCahaya = 1.90;
+// sensorSuhu = 32.00;
+// sensorKelembaban = 62.00 ;
+// sensorCahaya = 1.90;
 
 //  fuzzifikasi
    FuzzySuhu(sensorSuhu);
@@ -298,8 +292,4 @@ void Defuzzy () {
     } 
   } 
   defuzzy = pwm / defuz;
-//  defuzzy = 22;
-  
-//  Serial.print("defuz: ");
-//  Serial.println(defuz);
 }
